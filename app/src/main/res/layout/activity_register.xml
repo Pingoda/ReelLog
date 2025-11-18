@@ -69,13 +69,43 @@
 
         />
 
+    <TextView
+        android:id="@+id/UsernameError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/Username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/PasswordError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/Password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/EmailError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/Email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp" />
+
     <Button
-        android:id="@+id/btnAccedi"
+        android:id="@+id/btnRegistrati"
         android:layout_width="170dp"
         android:layout_height="49dp"
         android:layout_marginTop="108dp"
         android:background="@drawable/bottoni_accesso"
-        android:text="Accedi"
+        android:text="Registrati"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:backgroundTint="@null"
@@ -88,7 +118,7 @@
 
 
     <TextView
-        android:id="@+id/Registrati"
+        android:id="@+id/Accedi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -97,7 +127,7 @@
         android:focusable="true"
         android:padding="10dp"
 
-        app:layout_constraintTop_toBottomOf="@id/btnAccedi"
+        app:layout_constraintTop_toBottomOf="@id/btnRegistrati"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"

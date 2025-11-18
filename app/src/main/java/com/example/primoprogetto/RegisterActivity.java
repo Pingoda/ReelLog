@@ -29,14 +29,16 @@ public class RegisterActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Button btnAccedi = (Button) findViewById(R.id.btnAccedi);
+        Button btnRegistrati = (Button) findViewById(R.id.btnRegistrati);
         EditText Username = (EditText) findViewById(R.id.Username);
         EditText Password = (EditText) findViewById(R.id.Password);
+        EditText Email = (EditText) findViewById(R.id.Email);
 
-        TextView Registrati = findViewById(R.id.Registrati);
-        String htmlText = "<font color=" + Color.WHITE + ">Non hai un Account? </font>" +
-                "<font color=" + Color.parseColor("#FFF647") + "> Registrati!</font>";
-        Registrati.setText(Html.fromHtml(htmlText));
+
+        TextView Accedi = findViewById(R.id.Accedi);
+        String htmlText = "<font color=" + Color.WHITE + ">Hai già un account? </font>" +
+                "<font color=" + Color.parseColor("#FFF647") + "> Accedi!</font>";
+        Accedi.setText(Html.fromHtml(htmlText));
 
 
         View mainLayout = findViewById(R.id.main);
@@ -51,25 +53,27 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 Username.clearFocus();
                 Password.clearFocus();
+                Email.clearFocus();
 
             }
 
         });
-        btnAccedi.setOnClickListener(new View.OnClickListener()  {
+        btnRegistrati.setOnClickListener(new View.OnClickListener()  {
 
             @Override
             public void onClick(View v) {
                 String usernameText = Username.getText().toString();
                 String passwordText = Password.getText().toString();
-                Log.d("btnAccedi", "bottone premuto da "+usernameText);
+                String emailText = Email.getText().toString();
+                Log.d("btnRegistrati", "bottone premuto da "+usernameText+", email: "+emailText+ ", password: "+passwordText);
 
             }
         });
 
-        Registrati.setOnClickListener(new View.OnClickListener() {
+        Accedi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Registrati", "hai cliccato la scritta registrati");
+                Log.d("Accedi", "hai cliccato la scritta Accedi");
             }
         });
 
