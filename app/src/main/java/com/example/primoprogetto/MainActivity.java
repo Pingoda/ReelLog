@@ -1,6 +1,7 @@
 package com.example.primoprogetto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -72,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
         Registrati.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Registrati", "hai cliccato la scritta registrati");
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
 
