@@ -17,8 +17,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -32,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button btnAccedi = (Button) findViewById(R.id.btnAccedi);
-        EditText Username = (EditText) findViewById(R.id.Username);
-        EditText Password = (EditText) findViewById(R.id.Password);
+        Button btnAccedi = findViewById(R.id.btnAccedi);
+        EditText Username = findViewById(R.id.Username);
+        EditText Password = findViewById(R.id.Password);
 
         TextView Registrati = findViewById(R.id.Registrati);
         String htmlText = "<font color=" + Color.WHITE + ">Non hai un Account? </font>" +
@@ -44,36 +42,41 @@ public class MainActivity extends AppCompatActivity {
 
         View mainLayout = findViewById(R.id.main);
 
-        mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                View currentFocus = getCurrentFocus();
-                if(currentFocus != null){
-                    imm.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
-                }
-                Username.clearFocus();
-                Password.clearFocus();
-
+        mainLayout.setOnClickListener(v -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            View currentFocus = getCurrentFocus();
+            if(currentFocus != null){
+                imm.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
             }
-
+            Username.clearFocus();
+            Password.clearFocus();
         });
         btnAccedi.setOnClickListener(new View.OnClickListener()  {
+            TextView usernameError = findViewById(R.id.UsernameError);
+            TextView passwordError = findViewById(R.id.PasswordError);
             @Override
             public void onClick(View v) {
                 String usernameText = Username.getText().toString();
                 String passwordText = Password.getText().toString();
-                Log.d("btnAccedi", "bottone premuto da "+usernameText);
+                if (usernameText.isEmpty()) {
+                    String textError = "Username non può essere vuoto";
+                    usernameError.setText(textError);
+                } else {
+                    usernameError.setText("");
+                }
+
+                if (passwordText.isEmpty()) {
+                    String textError = "Password non può essere vuota";
+                    passwordError.setText(textError);
+                } else {
+                    passwordError.setText("");
+                }
+                Log.d("btnAccedi", "bottone premuto da " + usernameText);
 
             }
         });
 
-        Registrati.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Registrati", "hai cliccato la scritta registrati");
-            }
-        });
+        Registrati.setOnClickListener(v -> Log.d("Registrati", "hai cliccato la scritta registrati"));
 
     }
 
