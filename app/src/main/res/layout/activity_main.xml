@@ -49,6 +49,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Username" />
 
+    <TextView
+        android:id="@+id/UsernameError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/Username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/PasswordError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/Password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp" />
+
     <Button
         android:id="@+id/btnAccedi"
         android:layout_width="170dp"
