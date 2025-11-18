@@ -60,12 +60,26 @@ public class MainActivity extends AppCompatActivity {
 
         });
         btnAccedi.setOnClickListener(new View.OnClickListener()  {
-            
+            TextView usernameError = findViewById(R.id.UsernameError);
+            TextView passwordError = findViewById(R.id.PasswordError);
             @Override
             public void onClick(View v) {
                 String usernameText = Username.getText().toString();
                 String passwordText = Password.getText().toString();
-                Log.d("btnAccedi", "bottone premuto da "+usernameText);
+                if (usernameText.isEmpty()) {
+                    String textError = "Username non può essere vuoto";
+                    usernameError.setText(textError);
+                } else {
+                    usernameError.setText("");
+                }
+
+                if (passwordText.isEmpty()) {
+                    String textError = "Password non può essere vuota";
+                    passwordError.setText(textError);
+                } else {
+                    passwordError.setText("");
+                }
+                Log.d("btnAccedi", "bottone premuto da " + usernameText);
 
             }
         });
