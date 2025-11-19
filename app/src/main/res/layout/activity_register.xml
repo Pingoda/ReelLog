@@ -32,6 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="80dp" />
 
+
     <EditText
         android:id="@+id/Email"
         android:layout_width="262dp"
@@ -63,11 +64,6 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Email" />
-
-
-
-
-        />
 
     <TextView
         android:id="@+id/UsernameError"

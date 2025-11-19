@@ -1,6 +1,7 @@
 package com.example.primoprogetto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -58,13 +59,38 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
         });
+
         btnRegistrati.setOnClickListener(new View.OnClickListener()  {
+            TextView usernameError = findViewById(R.id.UsernameError);
+            TextView emailError = findViewById(R.id.EmailError);
+            TextView passwordError = findViewById(R.id.PasswordError);
 
             @Override
             public void onClick(View v) {
                 String usernameText = Username.getText().toString();
-                String passwordText = Password.getText().toString();
                 String emailText = Email.getText().toString();
+                String passwordText = Password.getText().toString();
+
+                if (usernameText.isEmpty()) {
+                    String textError = "Username non può essere vuoto";
+                    usernameError.setText(textError);
+                } else {
+                    usernameError.setText("");
+                }
+
+                if (emailText.isEmpty()) {
+                    String textError = "Email non può essere vuota";
+                    emailError.setText(textError);
+                } else {
+                    emailError.setText("");
+                }
+
+                if (passwordText.isEmpty()) {
+                    String textError = "Password non può essere vuota";
+                    passwordError.setText(textError);
+                } else {
+                    passwordError.setText("");
+                }
                 Log.d("btnRegistrati", "bottone premuto da "+usernameText+", email: "+emailText+ ", password: "+passwordText);
 
             }
@@ -73,7 +99,8 @@ public class RegisterActivity extends AppCompatActivity {
         Accedi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Accedi", "hai cliccato la scritta Accedi");
+                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
