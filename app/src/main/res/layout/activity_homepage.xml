@@ -13,7 +13,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp">
+            android:paddingBottom="40dp">
 
             <TextView
                 android:id="@+id/headerPopular"
@@ -35,15 +35,13 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/headerPopular"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/headerTopRated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I Più Votati di Sempre >"
+                android:text="I Film Più Votati >"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -59,8 +57,51 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/headerTopRated"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/headerTvSeries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Serie TV del Momento >"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/recyclerTopRated" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerTvSeries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/headerTvSeries"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/headerTopTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Serie TV: Le pietre miliari >"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerTvSeries" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerTopTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/headerTopTv"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

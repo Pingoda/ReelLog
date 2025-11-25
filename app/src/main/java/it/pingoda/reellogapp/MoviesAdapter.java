@@ -31,7 +31,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie movie = movieList.get(position);
-        holder.title.setText(movie.title);
+
+        if (movie.title != null && !movie.title.isEmpty()) {
+            holder.title.setText(movie.title);
+        } else {
+            holder.title.setText(movie.name);
+        }
 
         String urlImmagine = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
         Glide.with(context).load(urlImmagine).into(holder.poster);
