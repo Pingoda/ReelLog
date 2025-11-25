@@ -19,6 +19,8 @@ public class Homepage extends AppCompatActivity {
 
     private RecyclerView recyclerPopular;
     private RecyclerView recyclerTopRated;
+    private RecyclerView recyclerTvSeries;
+    private RecyclerView recyclerTopTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +31,13 @@ public class Homepage extends AppCompatActivity {
 
         recyclerPopular = findViewById(R.id.recyclerPopular);
         recyclerTopRated = findViewById(R.id.recyclerTopRated);
+        recyclerTvSeries = findViewById(R.id.recyclerTvSeries);
+        recyclerTopTv = findViewById(R.id.recyclerTopTv);
 
-        recyclerPopular.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerTopRated.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        setupRecycler(recyclerPopular);
+        setupRecycler(recyclerTopRated);
+        setupRecycler(recyclerTvSeries);
+        setupRecycler(recyclerTopTv);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -44,30 +50,47 @@ public class Homepage extends AppCompatActivity {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Movie> popList = response.body().results;
-                    MoviesAdapter adapter = new MoviesAdapter(Homepage.this, popList);
-                    recyclerPopular.setAdapter(adapter);
+                    recyclerPopular.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
                 }
             }
-            @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t) {
-                Log.e("API", "Errore Popular", t);
-            }
+            @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
         });
 
         movieService.getTopRatedMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Movie> topList = response.body().results;
-                    MoviesAdapter adapter = new MoviesAdapter(Homepage.this, topList);
-                    recyclerTopRated.setAdapter(adapter);
+                    recyclerTopRated.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                }
+            }
+            @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
+        });
+
+        movieService.getPopularSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+            @Override
+            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    recyclerTvSeries.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                }
+            }
+            @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
+        });
+
+        movieService.getTopRatedSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+            @Override
+            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    recyclerTopTv.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
                 }
             }
             @Override
             public void onFailure(Call<MoviesResponse> call, Throwable t) {
-                Log.e("API", "Errore Top Rated", t);
+                Log.e("API", "Error", t);
             }
         });
+    }
+
+    private void setupRecycler(RecyclerView rv) {
+        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 }

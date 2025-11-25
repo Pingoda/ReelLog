@@ -3,7 +3,6 @@ package it.pingoda.reellogapp;
 import java.util.List;
 
 public class Movie {
-
     public boolean adult;
     public String backdrop_path;
     public List<Integer> genre_ids;
@@ -17,5 +16,5 @@ public class Movie {
     public String title;
     public boolean video;
     public double vote_average;
-    public int vote_count;
+    public String name;
 }
