@@ -17,4 +17,5 @@ public class Movie {
     public boolean video;
     public double vote_average;
     public String name;
+    public String media_type;
 }
