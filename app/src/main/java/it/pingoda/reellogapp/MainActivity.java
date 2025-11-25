@@ -18,7 +18,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button btnAccedi = (Button) findViewById(R.id.btnAccedi);
-        EditText Username = (EditText) findViewById(R.id.Username);
-        EditText Password = (EditText) findViewById(R.id.Password);
+        Button btnAccedi = findViewById(R.id.btnAccedi);
+        EditText Username = findViewById(R.id.Username);
+        EditText Password = findViewById(R.id.Password);
 
         TextView Registrati = findViewById(R.id.Registrati);
         String htmlText = "<font color=" + Color.WHITE + ">Non hai un Account? </font>" +
@@ -45,23 +44,19 @@ public class MainActivity extends AppCompatActivity {
 
         View mainLayout = findViewById(R.id.main);
 
-        mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                View currentFocus = getCurrentFocus();
-                if(currentFocus != null){
-                    imm.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
-                }
-                Username.clearFocus();
-                Password.clearFocus();
-
+        mainLayout.setOnClickListener(v -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            View currentFocus = getCurrentFocus();
+            if(currentFocus != null){
+                imm.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
             }
+            Username.clearFocus();
+            Password.clearFocus();
 
         });
         btnAccedi.setOnClickListener(new View.OnClickListener()  {
-            TextView usernameError = findViewById(R.id.UsernameError);
-            TextView passwordError = findViewById(R.id.PasswordError);
+            final TextView usernameError = findViewById(R.id.UsernameError);
+            final TextView passwordError = findViewById(R.id.PasswordError);
             @Override
             public void onClick(View v) {
                 String usernameText = Username.getText().toString();
@@ -88,12 +83,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Registrati.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
+        Registrati.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
 
     }
