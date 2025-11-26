@@ -5,4 +5,5 @@
     <string name="accedi">Accedi</string>
     <string name="email">Email</string>
     <string name="registrati">Registrati</string>
+    <string name="search_bar">Cerca qualcosa...</string>
 </resources>

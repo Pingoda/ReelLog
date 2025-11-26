@@ -17,6 +17,9 @@
             android:name=".RegisterActivity"
             android:exported="false" />
 
+        <activity android:name=".SearchActivity"
+            android:exported="false" />
+
         <activity
             android:name=".Homepage"
             android:exported="false"
