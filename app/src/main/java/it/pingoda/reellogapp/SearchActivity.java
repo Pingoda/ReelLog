@@ -1,14 +1,18 @@
 package it.pingoda.reellogapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,22 +23,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-// Import necessario per accedere al BuildConfig generato da Gradle
-import it.pingoda.reellogapp.BuildConfig;
-
 public class SearchActivity extends AppCompatActivity {
 
-    private static final String TMDB_API_KEY = BuildConfig.TMDB_API_KEY;
-
+    private static final String TMDB_API_KEY = "340865ece50ffcd840ec7a6115eadcaf";
     private static final String TMDB_BASE_URL = "https://api.themoviedb.org/3/";
-
     private static final String API_LANGUAGE = "it-IT";
-
     private static final String MEDIA_TYPE_MOVIE = "movie";
 
     private EditText searchBar;
     private RecyclerView recyclerView;
-
     private SearchAdapter searchAdapter;
     private TMDbSearchApi tmdbSearchApi;
 
@@ -43,8 +40,9 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        initRetrofit();
+        getWindow().setStatusBarColor(getResources().getColor(R.color.sfondoNero));
 
+        initRetrofit();
         GenreCache.initialize(initGenreApi(), TMDB_API_KEY);
         GenreCache.loadGenres();
 
@@ -58,6 +56,24 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setAdapter(searchAdapter);
 
         setupSearchListener();
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+
+        bottomNav.setSelectedItemId(R.id.nav_search);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_home) {
+                Intent intent = new Intent(getApplicationContext(), Homepage.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                return true;
+
+            } else if (id == R.id.nav_search) {
+                return true;
+            }
+            return false;
+        });
     }
 
     private void initRetrofit() {
@@ -80,21 +96,16 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setupSearchListener() {
         searchBar.setOnEditorActionListener((v, actionId, event) -> {
-
             boolean isSearchAction = actionId == EditorInfo.IME_ACTION_SEARCH;
             boolean isEnterKey = (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN);
 
             if (isSearchAction || isEnterKey) {
-
                 String query = v.getText().toString().trim();
-
                 if (!query.isEmpty()) {
-                    Log.d("SearchActivity", "Ricerca avviata per: " + query);
                     fetchMoviesFromApi(query);
                 } else {
                     searchAdapter.updateList(new ArrayList<>());
                 }
-
                 return true;
             }
             return false;
@@ -107,7 +118,6 @@ public class SearchActivity extends AppCompatActivity {
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Movie> rawResults = response.body().results;
-
                     List<Movie> filteredResults = new ArrayList<>();
 
                     for (Movie movie : rawResults) {
@@ -115,21 +125,15 @@ public class SearchActivity extends AppCompatActivity {
                             filteredResults.add(movie);
                         }
                     }
-
                     searchAdapter.updateList(filteredResults);
-
                 } else {
-                    Log.e("SearchActivity", "Risposta API non riuscita: Codice " + response.code());
-                    Toast.makeText(SearchActivity.this, "Errore nella risposta API: " + response.code(), Toast.LENGTH_SHORT).show();
-                    searchAdapter.updateList(new ArrayList<>());
+                    Toast.makeText(SearchActivity.this, "Errore API", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<SearchResponse> call, Throwable t) {
-                Log.e("SearchActivity", "Errore di connessione API: " + t.getMessage(), t);
-                Toast.makeText(SearchActivity.this, "Errore di connessione. Controlla la rete.", Toast.LENGTH_LONG).show();
-                searchAdapter.updateList(new ArrayList<>());
+                Toast.makeText(SearchActivity.this, "Errore di connessione", Toast.LENGTH_SHORT).show();
             }
         });
     }

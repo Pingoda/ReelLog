@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/sfondoNero"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/fotoProfilo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:srcCompat="@mipmap/profile_picture_foreground" />
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ciao, Jimmy’s Gang"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toEndOf="@+id/fotoProfilo"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="41dp" />
+
+    <View
+        android:id="@+id/lineaDivisoria"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grayedOutWord"
+        app:layout_constraintTop_toBottomOf="@+id/fotoProfilo"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="16dp"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/txtStatistiche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Statistiche"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="142dp"
+        tools:ignore="MissingConstraints" />
+
+    <FrameLayout
+        android:layout_width="310dp"
+        android:layout_height="367dp"
+        android:background="@drawable/statistics_background"
+        tools:layout_editor_absoluteX="53dp"
+
+        tools:layout_editor_absoluteY="194dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/TotalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="50dp"
+            android:text="200 h"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:text="Tempo Totale"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:text="Tempo Totale"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

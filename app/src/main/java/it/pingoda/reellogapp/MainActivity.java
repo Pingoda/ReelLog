@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Log.d("btnAccedi", "bottone premuto da " + usernameText);
                 if(!usernameText.isEmpty() && !passwordText.isEmpty()){
-                    Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                    Intent intent = new Intent(MainActivity.this, Homepage.class);
                     startActivity(intent);
                 }
 

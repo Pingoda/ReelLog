@@ -3,8 +3,11 @@ package it.pingoda.reellogapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +40,23 @@ public class Homepage extends AppCompatActivity {
         setupRecycler(recyclerTopRated);
         setupRecycler(recyclerTvSeries);
         setupRecycler(recyclerTopTv);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setSelectedItemId(R.id.nav_home);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_home) {
+                return true;
+            } else if (id == R.id.nav_search) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                return true;
+            }
+            return false;
+        });
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
