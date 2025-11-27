@@ -16,7 +16,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Homepage extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private static final String TMDB_API_KEY = "340865ece50ffcd840ec7a6115eadcaf";
     private static final String BASE_URL = "https://api.themoviedb.org/";
@@ -54,7 +54,7 @@ public class Homepage extends AppCompatActivity {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recyclerPopular.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                    recyclerPopular.setAdapter(new MoviesAdapter(HomeActivity.this, response.body().results));
                 }
             }
             @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
@@ -64,7 +64,7 @@ public class Homepage extends AppCompatActivity {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recyclerTopRated.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                    recyclerTopRated.setAdapter(new MoviesAdapter(HomeActivity.this, response.body().results));
                 }
             }
             @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
@@ -74,7 +74,7 @@ public class Homepage extends AppCompatActivity {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recyclerTvSeries.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                    recyclerTvSeries.setAdapter(new MoviesAdapter(HomeActivity.this, response.body().results));
                 }
             }
             @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
@@ -84,7 +84,7 @@ public class Homepage extends AppCompatActivity {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recyclerTopTv.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                    recyclerTopTv.setAdapter(new MoviesAdapter(HomeActivity.this, response.body().results));
                 }
             }
             @Override
