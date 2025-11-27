@@ -1,4 +1,4 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,14 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import java.util.List;
+
+import it.pingoda.reellogapp.Adapters.MoviesAdapter;
+import it.pingoda.reellogapp.Responses.MoviesResponse;
+import it.pingoda.reellogapp.Services.TMDbMovieApi;
+import it.pingoda.reellogapp.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Homepage extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private static final String TMDB_API_KEY = "340865ece50ffcd840ec7a6115eadcaf";
     private static final String BASE_URL = "https://api.themoviedb.org/";
@@ -63,43 +67,43 @@ public class Homepage extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MovieService movieService = retrofit.create(MovieService.class);
+        TMDbMovieApi tmdbMovieApi = retrofit.create(TMDbMovieApi.class);
 
-        movieService.getPopularMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+        tmdbMovieApi.getPopularMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recyclerPopular.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                    recyclerPopular.setAdapter(new MoviesAdapter(HomeActivity.this, response.body().results));
                 }
             }
             @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
         });
 
-        movieService.getTopRatedMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+        tmdbMovieApi.getTopRatedMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recyclerTopRated.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                    recyclerTopRated.setAdapter(new MoviesAdapter(HomeActivity.this, response.body().results));
                 }
             }
             @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
         });
 
-        movieService.getPopularSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+        tmdbMovieApi.getPopularSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recyclerTvSeries.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                    recyclerTvSeries.setAdapter(new MoviesAdapter(HomeActivity.this, response.body().results));
                 }
             }
             @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
         });
 
-        movieService.getTopRatedSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+        tmdbMovieApi.getTopRatedSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recyclerTopTv.setAdapter(new MoviesAdapter(Homepage.this, response.body().results));
+                    recyclerTopTv.setAdapter(new MoviesAdapter(HomeActivity.this, response.body().results));
                 }
             }
             @Override
