@@ -1,8 +1,7 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -17,6 +16,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.pingoda.reellogapp.Adapters.SearchAdapter;
+import it.pingoda.reellogapp.Models.Movie;
+import it.pingoda.reellogapp.R;
+import it.pingoda.reellogapp.Responses.GenreCache;
+import it.pingoda.reellogapp.Responses.SearchResponse;
+import it.pingoda.reellogapp.Services.TMDbGenreApi;
+import it.pingoda.reellogapp.Services.TMDbSearchApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,7 +70,7 @@ public class SearchActivity extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
-                Intent intent = new Intent(getApplicationContext(), Homepage.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 return true;
