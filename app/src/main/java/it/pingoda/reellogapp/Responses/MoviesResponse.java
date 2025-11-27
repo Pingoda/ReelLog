@@ -1,6 +1,8 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Responses;
 
 import java.util.List;
+
+import it.pingoda.reellogapp.Models.Movie;
 
 public class MoviesResponse {
 

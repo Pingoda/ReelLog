@@ -1,4 +1,4 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Locale;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import it.pingoda.reellogapp.Responses.GenreCache;
+import it.pingoda.reellogapp.Models.Movie;
+import it.pingoda.reellogapp.R;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MovieViewHolder> {
 

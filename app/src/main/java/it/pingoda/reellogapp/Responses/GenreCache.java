@@ -1,4 +1,4 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Responses;
 
 import android.util.Log;
 
@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import it.pingoda.reellogapp.Services.TMDbGenreApi;
+import it.pingoda.reellogapp.Models.Genre;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
