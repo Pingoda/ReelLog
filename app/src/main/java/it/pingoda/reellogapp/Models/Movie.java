@@ -1,4 +1,4 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Models;
 
 import java.util.List;
 

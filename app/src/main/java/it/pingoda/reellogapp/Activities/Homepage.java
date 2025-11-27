@@ -1,10 +1,15 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
+
+import it.pingoda.reellogapp.Adapters.MoviesAdapter;
+import it.pingoda.reellogapp.Services.TMDbMovieApi;
+import it.pingoda.reellogapp.Responses.MoviesResponse;
+import it.pingoda.reellogapp.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,9 +48,9 @@ public class Homepage extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MovieService movieService = retrofit.create(MovieService.class);
+        TMDbMovieApi TMDbMovieApi = retrofit.create(TMDbMovieApi.class);
 
-        movieService.getPopularMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+        TMDbMovieApi.getPopularMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -55,7 +60,7 @@ public class Homepage extends AppCompatActivity {
             @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
         });
 
-        movieService.getTopRatedMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+        TMDbMovieApi.getTopRatedMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -65,7 +70,7 @@ public class Homepage extends AppCompatActivity {
             @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
         });
 
-        movieService.getPopularSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+        TMDbMovieApi.getPopularSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -75,7 +80,7 @@ public class Homepage extends AppCompatActivity {
             @Override public void onFailure(Call<MoviesResponse> call, Throwable t) {}
         });
 
-        movieService.getTopRatedSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
+        TMDbMovieApi.getTopRatedSeries(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {

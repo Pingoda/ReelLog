@@ -1,10 +1,11 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Services;
 
+import it.pingoda.reellogapp.Responses.MoviesResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface MovieService {
+public interface TMDbMovieApi {
 
     @GET("3/movie/popular")
     Call<MoviesResponse> getPopularMovies(@Query("api_key") String apiKey);

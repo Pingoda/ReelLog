@@ -1,4 +1,4 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Activities;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.pingoda.reellogapp.Adapters.SearchAdapter;
+import it.pingoda.reellogapp.BuildConfig;
+import it.pingoda.reellogapp.Responses.GenreCache;
+import it.pingoda.reellogapp.Models.Movie;
+import it.pingoda.reellogapp.R;
+import it.pingoda.reellogapp.Responses.SearchResponse;
+import it.pingoda.reellogapp.Services.TMDbGenreApi;
+import it.pingoda.reellogapp.Services.TMDbSearchApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,7 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 // Import necessario per accedere al BuildConfig generato da Gradle
-import it.pingoda.reellogapp.BuildConfig;
+
 
 public class SearchActivity extends AppCompatActivity {
 

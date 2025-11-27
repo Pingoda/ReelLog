@@ -14,19 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReelLogApp">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.RegisterActivity"
             android:exported="false" />
 
-        <activity android:name=".SearchActivity"
+        <activity android:name=".Activities.SearchActivity"
             android:exported="false" />
 
         <activity
-            android:name=".Homepage"
+            android:name=".Activities.Homepage"
             android:exported="false"
             />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

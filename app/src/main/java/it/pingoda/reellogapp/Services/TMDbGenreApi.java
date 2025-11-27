@@ -1,5 +1,6 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Services;
 
+import it.pingoda.reellogapp.Responses.GenreListResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
