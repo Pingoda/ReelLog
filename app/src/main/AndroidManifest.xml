@@ -24,6 +24,11 @@
             android:name=".Activities.HomeActivity"
             android:exported="false"
             />
+        <activity
+            android:name=".Activities.ProfileActivity"
+            android:exported="false"
+            />
+
 
         <activity
             android:name=".Activities.MainActivity"

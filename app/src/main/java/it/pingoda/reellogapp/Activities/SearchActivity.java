@@ -62,20 +62,32 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setAdapter(searchAdapter);
 
         setupSearchListener();
+
+        // --- GESTIONE NAVIGAZIONE ---
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
+        // Imposta CERCA come selezionato
         bottomNav.setSelectedItemId(R.id.nav_search);
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
+                // Vai alla Home
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 return true;
 
             } else if (id == R.id.nav_search) {
+                // Sei già in Cerca -> non fare nulla
+                return true;
+
+            } else if (id == R.id.nav_profile) {
+                // === NUOVO: Vai al Profilo ===
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
                 return true;
             }
             return false;

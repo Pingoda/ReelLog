@@ -46,15 +46,25 @@ public class HomeActivity extends AppCompatActivity {
         setupRecycler(recyclerTopTv);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+
+        // Imposta la HOME come selezionata
         bottomNav.setSelectedItemId(R.id.nav_home);
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
+                // Sei già nella Home, non fare nulla
                 return true;
             } else if (id == R.id.nav_search) {
+                // Vai a Cerca
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                return true;
+            } else if (id == R.id.nav_profile) {
+                // === NUOVO: Vai al Profilo ===
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 return true;
@@ -69,6 +79,7 @@ public class HomeActivity extends AppCompatActivity {
 
         TMDbMovieApi tmdbMovieApi = retrofit.create(TMDbMovieApi.class);
 
+        // --- Chiamate API ---
         tmdbMovieApi.getPopularMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
