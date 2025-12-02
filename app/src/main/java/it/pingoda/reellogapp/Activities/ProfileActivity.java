@@ -9,9 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import it.pingoda.reellogapp.Activities.HomeActivity;
-import it.pingoda.reellogapp.Activities.MainActivity;
-import it.pingoda.reellogapp.Activities.SearchActivity;
 import it.pingoda.reellogapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -53,6 +50,11 @@ public class ProfileActivity extends AppCompatActivity {
                     return true;
 
                 } else if (id == R.id.nav_profile) {
+                    return true;
+                } else if (id == R.id.nav_lists) {
+                    Intent intent = new Intent(getApplicationContext(), ListsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
                     return true;
                 }
 

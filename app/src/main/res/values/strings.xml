@@ -6,4 +6,14 @@
     <string name="email">Email</string>
     <string name="registrati">Registrati</string>
     <string name="search_bar">Cerca qualcosa...</string>
+    <string name="list_page_title">Le mie Liste</string>
+    <string name="list_poster">List Poster</string>
+    <string name="list_title">List Title</string>
+    <string name="list_elem_number">List Elements Number</string>
+    <string name="search_bar_text">Cerca Film...</string>
+    <string name="create_list">Create a New List</string>
+    <string name="logo">ReelLog Logo</string>
+    <string name="create_new_list_title">Crea Nuova Lista</string>
+    <string name="new_list_name">Nome della lista</string>
+    <string name="new_list_description">Descrizione della Lista</string>
 </resources>

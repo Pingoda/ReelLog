@@ -9,6 +9,7 @@ import android.util.Log;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import it.pingoda.reellogapp.Adapters.MoviesAdapter;
+import it.pingoda.reellogapp.BuildConfig;
 import it.pingoda.reellogapp.Responses.MoviesResponse;
 import it.pingoda.reellogapp.Services.TMDbMovieApi;
 import it.pingoda.reellogapp.R;
@@ -20,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private static final String TMDB_API_KEY = "340865ece50ffcd840ec7a6115eadcaf";
+    private static final String TMDB_API_KEY = BuildConfig.TMDB_API_KEY;
     private static final String BASE_URL = "https://api.themoviedb.org/";
 
     private RecyclerView recyclerPopular;
@@ -47,24 +48,25 @@ public class HomeActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
-        // Imposta la HOME come selezionata
         bottomNav.setSelectedItemId(R.id.nav_home);
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
-                // Sei già nella Home, non fare nulla
                 return true;
             } else if (id == R.id.nav_search) {
-                // Vai a Cerca
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 return true;
             } else if (id == R.id.nav_profile) {
-                // === NUOVO: Vai al Profilo ===
                 Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                return true;
+            } else if (id == R.id.nav_lists) {
+                Intent intent = new Intent(getApplicationContext(), ListsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 return true;
@@ -79,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
 
         TMDbMovieApi tmdbMovieApi = retrofit.create(TMDbMovieApi.class);
 
-        // --- Chiamate API ---
         tmdbMovieApi.getPopularMovies(TMDB_API_KEY).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {

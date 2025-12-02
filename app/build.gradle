@@ -2,9 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
-def apiKeyProperties = new Properties()
+def reelLogProperties = new Properties()
 if (project.rootProject.file("local.properties").exists()) {
-    apiKeyProperties.load(project.rootProject.file("local.properties").newDataInputStream())
+    reelLogProperties.load(project.rootProject.file("local.properties").newDataInputStream())
 }
 
 android {
@@ -25,7 +25,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "TMDB_API_KEY", apiKeyProperties.getProperty("tmdbApiKey", "\"TMDB_API_KEY_NON_TROVATA\"")
+        buildConfigField "String", "TMDB_API_KEY", reelLogProperties.getProperty("tmdbApiKey", "\"TMDB_API_KEY_NON_TROVATA\"")
+        buildConfigField "String", "TMDB_SESSION_ID", reelLogProperties.getProperty("tmdbSessionId", "\"TMDB_SESSION_ID_NON_TROVATA\"")
     }
 
     buildTypes {

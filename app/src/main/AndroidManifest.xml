@@ -29,6 +29,11 @@
             android:exported="false"
             />
 
+        <activity
+            android:name=".Activities.ListsActivity"
+            android:exported="false"
+            />
+
 
         <activity
             android:name=".Activities.MainActivity"
