@@ -5,4 +5,7 @@
     <color name="yellow">#FFF647</color>
     <color name="red">#FF0000</color>
     <color name="sfondoNero">#1E1E1E</color>
+    <color name="grayedOutWord">#919191</color>
+    <color name="darkGray">#2a2929</color>
+    <color name="highlight">#FFF647</color>
 </resources>

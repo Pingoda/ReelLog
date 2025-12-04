@@ -1,4 +1,4 @@
-package it.pingoda.reellogapp;
+package it.pingoda.reellogapp.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,28 +18,30 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class RegisterActivity extends AppCompatActivity {
+import it.pingoda.reellogapp.R;
+
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Button btnRegistrati = findViewById(R.id.btnRegistrati);
+
+        Button btnAccedi = findViewById(R.id.btnAccedi);
         EditText Username = findViewById(R.id.Username);
         EditText Password = findViewById(R.id.Password);
-        EditText Email = findViewById(R.id.Email);
 
-
-        TextView Accedi = findViewById(R.id.Accedi);
-        String htmlText = "<font color=" + Color.WHITE + ">Hai già un account? </font>" +
-                "<font color=" + Color.parseColor("#FFF647") + "> Accedi!</font>";
-        Accedi.setText(Html.fromHtml(htmlText));
+        TextView Registrati = findViewById(R.id.Registrati);
+        String htmlText = "<font color=" + Color.WHITE + ">Non hai un Account? </font>" +
+                "<font color=" + Color.parseColor("#FFF647") + "> Registrati!</font>";
+        Registrati.setText(Html.fromHtml(htmlText));
 
 
         View mainLayout = findViewById(R.id.main);
@@ -52,33 +54,20 @@ public class RegisterActivity extends AppCompatActivity {
             }
             Username.clearFocus();
             Password.clearFocus();
-            Email.clearFocus();
 
         });
-
-        btnRegistrati.setOnClickListener(new View.OnClickListener()  {
+        btnAccedi.setOnClickListener(new View.OnClickListener()  {
             final TextView usernameError = findViewById(R.id.UsernameError);
-            final TextView emailError = findViewById(R.id.EmailError);
             final TextView passwordError = findViewById(R.id.PasswordError);
-
             @Override
             public void onClick(View v) {
                 String usernameText = Username.getText().toString();
-                String emailText = Email.getText().toString();
                 String passwordText = Password.getText().toString();
-
                 if (usernameText.isEmpty()) {
                     String textError = "Username non può essere vuoto";
                     usernameError.setText(textError);
                 } else {
                     usernameError.setText("");
-                }
-
-                if (emailText.isEmpty()) {
-                    String textError = "Email non può essere vuota";
-                    emailError.setText(textError);
-                } else {
-                    emailError.setText("");
                 }
 
                 if (passwordText.isEmpty()) {
@@ -87,13 +76,17 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     passwordError.setText("");
                 }
-                Log.d("btnRegistrati", "bottone premuto da "+usernameText+", email: "+emailText+ ", password: "+passwordText);
+                Log.d("btnAccedi", "bottone premuto da " + usernameText);
+                if(!usernameText.isEmpty() && !passwordText.isEmpty()){
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
 
             }
         });
 
-        Accedi.setOnClickListener(v -> {
-            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        Registrati.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
 
